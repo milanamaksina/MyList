@@ -11,6 +11,32 @@
             Length = 0;
         }
 
+        public ArrayList(int[] array)
+        {
+            _array = array;
+            Length = array.Length;
+        }
+
+        public int this[int index]
+        {
+            get
+            {
+                if (index < 0 || index >= Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                return _array[index];
+            }
+            set
+            {
+                if (index < 0 || index >= Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                _array[index] = value;
+            }
+        }
+      
         public void AddToEnd(int value)
         {
             if (Length >= _array.Length)
@@ -81,31 +107,27 @@
         } //5
         public void DeleteIndexElement(int index)
         {
-            int[] newArray = new int[Length];
-            for (int i = 0; i < Length; i++)
+            int[] newArray = _array;
+            for (int i = index; i < Length - 1; i++)
             {
-                newArray[i] = _array[i];
-            }
-            for (int i = index; i <= Length - 1; i++)
-            {
-                newArray[i] = _array[i - 1];
+                newArray[i] = _array[i + 1];
             }
             _array = newArray;
             DownSize();
             Length--;
 
-        } //6???
+        } //6
         public void DeleteNElementsFromEnd(int n)
         {
-            int[] newArray = new int[Length];
+            int[] newArray = _array;
             for (int i = 0; i < Length - n; i++)
             {
                 newArray[i] = _array[i];
             }
             _array = newArray;
             DownSize();
-            Length--;
-        } //7?????
+            Length=Length-n;
+        } //7
         public void DeleteNElementsFromBegin(int n)
         {
             int[] newArray = new int[Length];
@@ -250,24 +272,87 @@
             }
             newArray = _array;
         } //20
+        public int DeleteTheFirstMeaning(int value)
+        {
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    Remove(i);
+                    Length--;
+                    return i;
+                }
+            }
+            return -1;
+        } //21
+        public int GetAmountOfAllDeletedMeanings(int value)
+        {
+            int amount = 0;
+            for (int i = 0; i < Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    amount++;
+                }
+                else
+                {
+                    _array[i-amount]=_array[i];
+                }
+            }
+            Length-=amount;
+            return amount;
+        } //22
+        public void AddListToEnd(ArrayList list)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException("list");
+            }
 
-        //public void DeleteTheFirstMeaning(int value)
-        //{
-        //    int[] newArray = new int[Length];
-        //    for (int i = 0; i < Length; i++)
-        //    {
-        //        if (value == _array[i])
-               
-        //              _array[i] = _array[i + 1];
-                    
-                    
-                
-        //    }
-            
-        //    newArray = _array;
-        //}
+            for (int i = 0; i < list.Length; i++)
+            {
+                this.AddToEnd(list[i]);
+            }
+        } //24
+        public void AddListToBegin(ArrayList list)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException("list");
+            }
+
+            for (int i = list.Length - 1; i >= 0; i--)
+            {
+                this.AddToBegin(list[i]);
+            }
+        } //25
+        public void AddListByIndex(ArrayList list, int index)
+        {
+            if (list == null)
+            {
+                throw new ArgumentNullException("list");
+            }
+            for (int i = 0; i < list.Length; i++)
+            {
+                this.AddValueToIndex(list[i], index);
+                index++;
+            }
+        } //26
 
 
+        private void Remove(int index)
+        {
+            {
+                for (int i = 0; i < index; i++)
+                {
+                    _array[i] = _array[i];
+                }
+                for (int i = index + 1; i < Length; i++)
+                {
+                    _array[i - 1] = _array[i];
+                }
+            }
+        }
         private void DownSize()
         {
             int newLength = (int)(_array.Length - 1);
