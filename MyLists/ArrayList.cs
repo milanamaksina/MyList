@@ -10,7 +10,6 @@
             _array = new int[10];
             Length = 0;
         }
-
         public MyArrayList(int[] array)
         {
             if (array == null || array.Length == 0)
@@ -25,7 +24,6 @@
                 UpSize();
             }
         }
-
         public int this[int index]
         {
             get
@@ -72,7 +70,10 @@
         } //2
         public void AddValueToIndex(int value, int index)
         {
-
+            if(index > Length)
+            {
+                throw new Exception("index cannot be less than length");
+            }
             if (index == Length)
             {
                 AddToEnd(value);
@@ -101,6 +102,10 @@
         } //3
         public void DeleteValueEnd()
         {
+            if (Length < 1)
+            {
+                throw new Exception("Length cannot be less than 1");
+            }
             if (Length >= 0)
             {
                 DownSize();
@@ -109,6 +114,10 @@
         } //4
         public void DeleteValueBegin()
         {
+            if (Length < 1)
+            {
+                throw new Exception("Length cannot be less than 1");
+            }
             for (int i = 0; i < Length - 1; i++)
             {
                 _array[i] = _array[i + 1];
@@ -129,6 +138,10 @@
         } //6
         public void DeleteNElementsFromEnd(int n)
         {
+            if(Length < 1 || n < 0 || n > Length)
+            {
+                throw new Exception(" length should be > 0 and N more than 0 and less than Length");
+            }
             int[] newArray = _array;
             for (int i = 0; i < Length - n; i++)
             {
@@ -140,6 +153,10 @@
         } //7
         public void DeleteNElementsFromBegin(int n)
         {
+            if (Length < 1 || n < 0 || n > Length)
+            {
+                throw new Exception(" length should be > 0 and N more than 0 and less than Length");
+            }
             int[] newArray = new int[Length];
             for (int i = 0; i < Length - n; i++)
             {
@@ -148,16 +165,16 @@
             _array = newArray;
             Length = Length - n;
         } //8
-        public void DeleteNElementsFromIndex(int n)
+        public void DeleteNElementsFromIndex(int n, int index)
         {
-            int index = 2;
-            int[] newArray = new int[Length];
-            newArray = _array;
-            for (int i = index; i < Length - n; i++)
+            if(n > Length || n < 0|| index < 0 || index > Length)
             {
-                newArray[i] = _array[i + n];
+                throw new Exception("n > Length || n < 0|| index < 0 || index > Length");
             }
-            _array = newArray;
+            for (int i = index; i <= Length - n; i++)
+            {
+                _array[i] = _array[i + n];
+            }
             Length = Length - n;
         } //9   
         public int GetElementByIndex(int index)

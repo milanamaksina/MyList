@@ -71,8 +71,50 @@ namespace Lists.Tests
             Assert.AreEqual(expectedList, actualList);
         } //6 
 
+        [TestCaseSource(typeof(DeleteNElementsFromEndTestSource))]
+        public void DeleteNElementsFromEndTest(int n, MyArrayList list, MyArrayList expectedList)
+        {
+            MyArrayList actualList = list;
+            actualList.DeleteNElementsFromEnd(n);
+
+            Assert.AreEqual(expectedList, actualList);
+        } //7
+
+        [TestCaseSource(typeof(DeleteNElementsFromBeginTestSource))]
+        public void DeleteNElementsFromBeginTest(int n, MyArrayList list, MyArrayList expectedList)
+        {
+            MyArrayList actualList = list;
+            actualList.DeleteNElementsFromBegin(n);
+
+            Assert.AreEqual(expectedList, actualList);
+        } //8
+
+        [TestCaseSource(typeof(DeleteNElementsFromIndexTestSource))]
+        public void DeleteNElementsFromIndexTest(int n, int index, MyArrayList list, MyArrayList expectedList)
+        {
+            MyArrayList actualList = list;
+            actualList.DeleteNElementsFromIndex(n, index);
+
+            Assert.AreEqual(expectedList, actualList);
+        } //9
+
+        [TestCaseSource(typeof(GetElementByIndexTestSource))]
+        public void GetElementByIndexTest(int index, MyArrayList list, int expected)
+        {
+            int actual = list.GetElementByIndex(index);
+            Assert.AreEqual(expected, actual);
+        } //11
+
+        [TestCase(typeof(GetIndexByElementTestSource))]
+        public void GetIndexByElementTest(int value, MyArrayList list, int expected)
+        {
+            int actual = list.GetElementByIndex(value);
+            Assert.AreEqual(expected, actual);
+        } //12
+
 
     }
+
 
 
 

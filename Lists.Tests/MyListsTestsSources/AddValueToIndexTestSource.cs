@@ -35,14 +35,6 @@ namespace Lists.Tests.MyListsTestsSources
             expectedList = new MyArrayList(new int[] { 0 });
             yield return new object[] { value, index, list, expectedList };
 
-            value = 2;
-            index = 5;
-            list = new MyArrayList(new int[] { });
-            expectedList = new MyArrayList(new int[] { });
-            yield return new object[] { value, index, list, expectedList }; //? эксепшн
-
-
-
         }
     }
 }
