@@ -1,6 +1,6 @@
 ﻿using MyLists;
 
-ArrayList list = new ArrayList();
+MyArrayList list = new MyArrayList();
 
 
 list.Write();
@@ -26,7 +26,7 @@ list.DeleteIndexElement(2);
 list.Write();
 list.DeleteNElementsFromEnd(3);
 list.Write();
-var newList = new ArrayList(new int[] { 1, 1, 0 });
+var newList = new MyArrayList(new int[] { 1, 1, 0 });
 list.AddListToBegin(newList);
 list.Write();
 //list.AddListToEnd(newList);

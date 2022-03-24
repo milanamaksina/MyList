@@ -1,20 +1,29 @@
 ﻿namespace MyLists
 {
-    public class ArrayList
+    public class MyArrayList
     {
         public int Length { get; private set; } //длина для пользователя
         private int[] _array; //реальная длинна
 
-        public ArrayList()
+        public MyArrayList()
         {
             _array = new int[10];
             Length = 0;
         }
 
-        public ArrayList(int[] array)
+        public MyArrayList(int[] array)
         {
-            _array = array;
-            Length = array.Length;
+            if (array == null || array.Length == 0)
+            {
+                _array = new int[10];
+                Length = 0;
+            }
+            else
+            {
+                _array = array;
+                Length = array.Length;
+                UpSize();
+            }
         }
 
         public int this[int index]
@@ -92,17 +101,18 @@
         } //3
         public void DeleteValueEnd()
         {
-           Length--;
+            if (Length >= 0)
+            {
+                DownSize();
+                Length--;
+            }
         } //4
         public void DeleteValueBegin()
         {
-            int[] newArray = new int[Length];
             for (int i = 0; i < Length - 1; i++)
             {
-                newArray[i] = _array[i + 1];
-
+                _array[i] = _array[i + 1];
             }
-            _array = newArray;
              Length--;
         } //5
         public void DeleteIndexElement(int index)
@@ -285,7 +295,7 @@
             }
             return -1;
         } //21
-        public int GetAmountOfAllDeletedMeanings(int value)
+        public int DeleteAllByValue(int value)
         {
             int amount = 0;
             for (int i = 0; i < Length; i++)
@@ -302,7 +312,7 @@
             Length-=amount;
             return amount;
         } //22
-        public void AddListToEnd(ArrayList list)
+        public void AddListToEnd(MyArrayList list)
         {
             if (list == null)
             {
@@ -314,7 +324,7 @@
                 this.AddToEnd(list[i]);
             }
         } //24
-        public void AddListToBegin(ArrayList list)
+        public void AddListToBegin(MyArrayList list)
         {
             if (list == null)
             {
@@ -326,7 +336,7 @@
                 this.AddToBegin(list[i]);
             }
         } //25
-        public void AddListByIndex(ArrayList list, int index)
+        public void AddListByIndex(MyArrayList list, int index)
         {
             if (list == null)
             {
@@ -339,7 +349,35 @@
             }
         } //26
 
-
+        public override string ToString()
+        {
+            string result = " ";
+            for (int i = 0; i < Length; i++)
+            {
+                result += $"{_array[i]}";
+            }
+            return result;
+        }
+        public override bool Equals(object? obj)
+        {
+            if ((obj == null) || !(obj is MyArrayList))
+            {
+                return false;
+            }
+            MyArrayList list = (MyArrayList)obj;
+            if (list.Length != this.Length) // длина того, кого мне передали и моя длинна
+            {
+                return false;
+            }
+            for (int i = 0; i < this.Length; i++)
+            {
+                if (list[i] != this[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private void Remove(int index)
         {
             {
