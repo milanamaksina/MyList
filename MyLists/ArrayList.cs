@@ -70,9 +70,9 @@
         } //2
         public void AddValueToIndex(int value, int index)
         {
-            if(index > Length)
+            if(index >= Length || index < 0)
             {
-                throw new Exception("index cannot be less than length");
+                throw new Exception("index cannot be less than length or be negative");
             }
             if (index == Length)
             {
@@ -126,6 +126,10 @@
         } //5
         public void DeleteIndexElement(int index)
         {
+            if(index < 0 || index >= Length)
+            {
+                throw new Exception("index cannot be negative and equal or be more than Lenght");
+            }
             int[] newArray = _array;
             for (int i = index; i < Length - 1; i++)
             {
@@ -167,7 +171,7 @@
         } //8
         public void DeleteNElementsFromIndex(int n, int index)
         {
-            if(n > Length || n < 0|| index < 0 || index > Length)
+            if(n > Length || n < 0|| index < 0 || index >= Length)
             {
                 throw new Exception("n > Length || n < 0|| index < 0 || index > Length");
             }
@@ -202,8 +206,12 @@
         } //12
         public void ChangeElement(int index, int value)
         {
+            if (index < 0 || index >= Length)
+            {
+                throw new Exception("index is out of range");
+            }
              _array[index] = value;
-        } //13 Добавь эксепшены
+        } //13 
         public void Reverse()
         {
             int[] newArray = new int[Length];
@@ -217,6 +225,11 @@
         } //14
         public int GetMaxValue()
         {
+            if (Length < 1)
+            {
+                throw new Exception(" Length cannot be less than 1");
+
+            }
             int max = _array[0];
             for (int i = 1; i < Length; i++)
             {
@@ -229,6 +242,11 @@
         } //15
         public int GetMinValue()
         {
+            if (Length < 1)
+            {
+                throw new Exception(" Length cannot be less than 1");
+
+            }
             int min = _array[0];
             for (int i = 1; i < Length; i++)
             {
@@ -241,6 +259,11 @@
         } //16
         public int FindIndexOfMaxValue()
         {
+            if (Length < 1)
+            {
+                throw new Exception(" Length cannot be less than 1");
+
+            }
             int maxValue = GetMaxValue();
             for (int i = 0; i < Length; i++)
             {
@@ -253,6 +276,11 @@
         } //17
         public int FindIndexOfMinValue()
         {
+            if (Length < 1)
+            {
+                throw new Exception(" Length cannot be less than 1");
+
+            }
             int minValue = GetMinValue();
             for (int i = 0; i < Length; i++)
             {
@@ -331,9 +359,9 @@
         } //22
         public void AddListToEnd(MyArrayList list)
         {
-            if (list == null)
+            if (list is null)
             {
-                throw new ArgumentNullException("list");
+                throw new NullReferenceException("list");
             }
 
             for (int i = 0; i < list.Length; i++)
@@ -345,7 +373,7 @@
         {
             if (list == null)
             {
-                throw new ArgumentNullException("list");
+                throw new NullReferenceException("list");
             }
 
             for (int i = list.Length - 1; i >= 0; i--)
@@ -357,7 +385,7 @@
         {
             if (list == null)
             {
-                throw new ArgumentNullException("list");
+                throw new NullReferenceException("list");
             }
             for (int i = 0; i < list.Length; i++)
             {

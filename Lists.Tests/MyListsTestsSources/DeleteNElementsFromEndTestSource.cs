@@ -39,5 +39,33 @@ namespace Lists.Tests.MyListsTestsSources
 
     }
 
-    
+    public class DeleteNElementFromEndNegativeTestSource : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            int n = -1;
+            MyArrayList list = new MyArrayList(new int[] { 1, 2, 3, 4, 5 });
+            yield return new object[] { n, list };
+
+            n = 6;
+            list = new MyArrayList(new int[] { 1, 2, 3, 4, 5 });
+            yield return new object[] { n, list };
+
+            n = -1;
+            list = new MyArrayList(new int[] { 1 });
+            yield return new object[] { n, list };
+
+            n = 2;
+            list = new MyArrayList(new int[] { 1 });
+            yield return new object[] { n, list };
+
+            n = -1;
+            list = new MyArrayList(new int[] { });
+            yield return new object[] { n, list };
+
+
+
+        }
+    }
+
 }

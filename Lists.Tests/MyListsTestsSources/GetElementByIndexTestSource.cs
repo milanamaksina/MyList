@@ -37,4 +37,32 @@ namespace Lists.Tests.MyListsTestsSources
             yield return new object[] { index, list, expected};
         }
     }
+    public class GetElementByIndexNegativeTestSource : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            
+            int index = -1;
+            MyArrayList list = new MyArrayList(new int[] { 1, 2, 3, 4, 5 });
+            yield return new object[] {index, list };
+
+            index = 5;
+            list = new MyArrayList(new int[] { 1, 2, 3, 4, 5 });
+            yield return new object[] { index, list };
+
+            index = -1;
+            list = new MyArrayList(new int[] { 1 });
+            yield return new object[] { index, list };
+
+            index = 1;
+            list = new MyArrayList(new int[] { 1 });
+            yield return new object[] { index, list };
+
+            index = -1;
+            list = new MyArrayList(new int[] { });
+            yield return new object[] { index, list };
+
+        }
+    }
+
 }

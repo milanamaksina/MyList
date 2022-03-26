@@ -58,3 +58,5 @@ list.Write();
 //int s = list.GetAmountOfAllDeletedMeanings(5);
 //Console.WriteLine(s);
 //list.Write();
+int s = list.GetIndexByElement(2);
+Console.WriteLine(s);

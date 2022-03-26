@@ -18,7 +18,7 @@ namespace Lists.Tests.MyListsTestsSources
 
             value = -2;
             list = new MyArrayList(new int[] { -1, -2, -2, -4, -5, -6, -7, -8 });
-            expectedList = new MyArrayList(new int[] { -1, -2, -2, -4, -5, -6, -7, -8, -2});
+            expectedList = new MyArrayList(new int[] { -1, -2, -2, -4, -5, -6, -7, -8, -2 });
             yield return new object[] { value, list, expectedList };
 
             value = 2;
@@ -27,9 +27,10 @@ namespace Lists.Tests.MyListsTestsSources
             yield return new object[] { value, list, expectedList };
 
             value = 0;
-            list = new MyArrayList(new int[] {5, 6, 7, 8});
-            expectedList = new MyArrayList(new int[] { 5, 6, 7, 8, 0});
+            list = new MyArrayList(new int[] { 5, 6, 7, 8 });
+            expectedList = new MyArrayList(new int[] { 5, 6, 7, 8, 0 });
             yield return new object[] { value, list, expectedList };
         }
+        
     }
 }

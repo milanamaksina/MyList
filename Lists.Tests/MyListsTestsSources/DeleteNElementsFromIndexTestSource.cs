@@ -31,10 +31,67 @@ namespace Lists.Tests.MyListsTestsSources
 
             n = 1;
             index = 0;
-            list = new MyArrayList(new int[] {5, 5, 4, 5 });
-            expectedList = new MyArrayList(new int[] { 5, 4, 5});
+            list = new MyArrayList(new int[] { 5, 5, 4, 5 });
+            expectedList = new MyArrayList(new int[] { 5, 4, 5 });
             yield return new object[] { n, index, list, expectedList };
 
         }
     }
+
+    public class DeleteNElementFromIndexNegativeTestSource : IEnumerable
+    {
+        public IEnumerator GetEnumerator()
+        {
+            int n = 1;
+            int index = -1;
+            MyArrayList list = new MyArrayList(new int[] { 1, 2, 3, 4, 5 });
+            yield return new object[] { n, index, list };
+
+            n = 5;
+            index = 5;
+            list = new MyArrayList(new int[] { 1, 2, 3, 4, 5 });
+            yield return new object[] { n, index, list };
+
+            n = 1;
+            index = 1;
+            list = new MyArrayList(new int[] { 1 });
+            yield return new object[] { n, index, list };
+
+            n = 1;
+            index = -1;
+            list = new MyArrayList(new int[] { 1 });
+            yield return new object[] { n, index, list };
+
+            n = -1;
+            index = -1;
+            list = new MyArrayList(new int[] { });
+            yield return new object[] { n, index, list };
+
+            n = 0;
+            index = 0;
+            list = new MyArrayList(new int[] { });
+            yield return new object[] { n, index, list };
+
+            n = -2;
+            index = 3;
+            list = new MyArrayList(new int[] { 1, 2, 3, 4, 5 });
+            yield return new object[] { n, index, list };
+
+            n = 20;
+            index = 3;
+            list = new MyArrayList(new int[] { 1, 2, 3, 4, 5 });
+            yield return new object[] { n, index, list };
+
+            n = 0;
+            index = 0;
+            list = new MyArrayList(new int[] { });
+            yield return new object[] { n, index, list };
+        }
+    }
+
+
 }
+
+
+
+
