@@ -4,9 +4,14 @@ MyArrayList list = new MyArrayList();
 
 LinkedList listoc = new LinkedList();
 
+
 listoc.AddToEnd(55);
 listoc.AddToEnd(66);
 listoc.AddToEnd(77);
+listoc.AddToEnd(88);
+listoc.AddToBegin(999);
+listoc.AddByIndex(22, 2);
+listoc.DeleteEnd();
 listoc.PrintList();
 
 
